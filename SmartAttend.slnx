@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="SmartAttend.API/SmartAttend.API.csproj" />
+    <Project Path="SmartAttend.Application/SmartAttend.Application.csproj" />
+    <Project Path="SmartAttend.Domain/SmartAttend.Domain.csproj" Id="bb3c2980-a91d-48a6-b8a5-e8b646a88d69" />
+    <Project Path="SmartAttend.Infrastructure/SmartAttend.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="SmartAttend.IntegrationTests/SmartAttend.IntegrationTests.csproj" />
+    <Project Path="SmartAttend.UnitTests/SmartAttend.UnitTests.csproj" />
+  </Folder>
+</Solution>
