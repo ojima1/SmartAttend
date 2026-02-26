@@ -8,12 +8,12 @@ namespace SmartAttend.Domain.Entities
     public class Employee
     {
         public Guid Id { get; private set; }
-        public string FullName { get; private set; }
-        public string Email { get; private set; }
-        public string PasswordHash { get; private set; }
+        public string FullName { get; private set; } = string.Empty;
+        public string Email { get; private set; } = string.Empty;
+        public string PasswordHash { get; private set; } = string.Empty;
         public EmployeeRole Role { get; private set; }
         public Guid DepartmentId { get; private set; }
-        public Department Department { get; private set; }
+        public Department Department { get; private set; } = null!;
         public string? FaceImageBase64 { get; private set; }
         public bool IsActive { get; private set; }
         public DateTime CreatedAt { get; private set; }

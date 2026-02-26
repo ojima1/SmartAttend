@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace SmartAttend.Domain.Enums;
 
-namespace SmartAttend.Domain.Enums
+public enum EmployeeRole
 {
-    public enum EmployeeRole
-    {
-        Staff, Intern, Manager, HR, Admin
-    }
+    Admin = 1,
+    HR = 2,
+    Manager = 3,
+    Staff = 4,
+    Intern = 5,
+    Regular = 6,
+    Remote = 7
 }
