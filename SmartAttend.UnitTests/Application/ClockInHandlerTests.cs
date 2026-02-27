@@ -76,7 +76,7 @@ namespace SmartAttend.UnitTests.Application
                             new FaceMatchResult(true, 1.0, "Matched")));
 
             _scheduleService.Setup(x => x.GetTodayScheduleAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
-                            .ReturnsAsync(new ScheduleResult(DayType.WorkDay));
+     .ReturnsAsync(new ScheduleResult(true, true, true, true, true, true, true)); 
 
             // Act
             var result = await _handler.Handle(command, CancellationToken.None);

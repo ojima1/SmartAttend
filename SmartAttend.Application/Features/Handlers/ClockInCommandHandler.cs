@@ -66,14 +66,28 @@ public class ClockInCommandHandler : IRequestHandler<ClockInCommand, ClockInResp
             return new ClockInResponse(false, "Biometric verification failed", null);
 
         // 5. Get DayType (WorkDay/Holiday/etc) from Schedule Service
+        // 5. Get Schedule from Service
         var schedule = await _scheduleService.GetTodayScheduleAsync(employee.Id, ct);
 
-        // 6. Create Record using your Entity's Factory Method
-        // This automatically handles the Late/OnTime logic inside the Domain
+        // Determine if today is a valid work day based on the 7-day schedule
+        bool isWorkDay = DateTime.UtcNow.DayOfWeek switch
+        {
+            DayOfWeek.Monday => schedule.IsMondayEnabled,
+            DayOfWeek.Tuesday => schedule.IsTuesdayEnabled,
+            DayOfWeek.Wednesday => schedule.IsWednesdayEnabled,
+            DayOfWeek.Thursday => schedule.IsThursdayEnabled,
+            DayOfWeek.Friday => schedule.IsFridayEnabled,
+            DayOfWeek.Saturday => schedule.IsSaturdayEnabled,
+            DayOfWeek.Sunday => schedule.IsSundayEnabled,
+            _ => false
+        };
+
+        // 6. Create Record
+        // Use the calculated isWorkDay to set the DayType
         var record = AttendanceRecord.Create(
             employee,
             DateTime.UtcNow,
-            schedule.DayType,
+            isWorkDay ? DayType.WorkDay : DayType.NonWorkDay, // Use logic here
             request.Location);
 
         _attendanceRepo.Add(record);

@@ -1,22 +1,24 @@
 ﻿using SmartAttend.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using SmartAttend.Domain.Common; 
 
 namespace SmartAttend.Domain.Entities
 {
-    public class Employee
+    public class Employee : BaseEntity // Inherit from BaseEntity
     {
-        public Guid Id { get; private set; }
         public string FullName { get; private set; } = string.Empty;
         public string Email { get; private set; } = string.Empty;
         public string PasswordHash { get; private set; } = string.Empty;
         public EmployeeRole Role { get; private set; }
+
         public Guid DepartmentId { get; private set; }
-        public Department Department { get; private set; } = null!;
+        public virtual Department Department { get; private set; } = null!;
+
+        // Missing Property 1: Link to personal schedule override
+        public Guid? IndividualScheduleId { get; private set; }
+        public virtual WorkSchedule? IndividualSchedule { get; set; }
+
         public string? FaceImageBase64 { get; private set; }
         public bool IsActive { get; private set; }
-        public DateTime CreatedAt { get; private set; }
 
         private Employee() { }
 

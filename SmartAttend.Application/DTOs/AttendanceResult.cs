@@ -7,8 +7,15 @@ public record FaceMatchResult(bool IsMatch, double Confidence, string Reason);
 public record CombinedBiometricResult(LivenessResult LivenessResult, FaceMatchResult FaceMatchResult);
 public record VpnCheckResult(bool IsVpn, string Source);
 public record GeoValidationResult(bool IsWithinRange, double DistanceMetres);
-public record ScheduleResult(DayType DayType);
-
+public record ScheduleResult(
+    bool IsMondayEnabled,
+    bool IsTuesdayEnabled,
+    bool IsWednesdayEnabled,
+    bool IsThursdayEnabled,
+    bool IsFridayEnabled,
+    bool IsSaturdayEnabled,
+    bool IsSundayEnabled
+);
 // Reporting DTOs
 public record AttendanceReportDto(Guid Id, string EmployeeName, DateTime? ClockIn, DateTime? ClockOut, string Status);
 public record LateArrivalDto(string EmployeeName, DateTime ClockIn, string Department);

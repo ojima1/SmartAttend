@@ -18,6 +18,8 @@ namespace SmartAttend.Domain.Entities
         public double? Longitude { get; private set; }
         public bool FaceVerified { get; private set; }
         public bool IsEarlyDeparture { get; private set; }
+
+        public virtual Employee Employee { get; private set; } = null!;
         public DateOnly Date { get; private set; }
         public Guid? PermittedByManagerId { get; private set; }
         public string? PermissionNote { get; private set; }

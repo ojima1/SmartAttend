@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using SmartAttend.Domain.Common;
 
 namespace SmartAttend.Domain.Entities
 {
-    public class Department
+    public class Department : BaseEntity
     {
-        public Guid Id { get; private set; }
         public string Name { get; private set; } = string.Empty;
 
-        // Private constructor ensures creation only via the Factory Method
+        // Navigation property for the schedule
+        public virtual WorkSchedule? DefaultSchedule { get; set; }
+
         private Department() { }
 
-        /// <summary>
-        /// Factory method to create a new Department
-        /// </summary>
         public static Department Create(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
